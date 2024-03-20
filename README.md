@@ -1,6 +1,6 @@
 
 ## Demo Links
-[Link Demo ](hhttps://klasemen-coding-test.vercel.app/input-club)
+[Link Demo](hhttps://klasemen-coding-test.vercel.app/input-club)
 
 ## Getting Started
 
@@ -25,8 +25,6 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 NodeJS Version : V18.17.0
 
 ## Screenshots
-
-![App Screenshot](https://klasemen-coding-test.vercel.app/screenshoots/home.png)
 
 ![alt text](https://github.com/fkrmubaroq/klasemen-coding-test/blob/main/screenshoots/home.png?raw=true)
 ![alt text](https://github.com/fkrmubaroq/klasemen-coding-test/blob/main/screenshoots/input-club.png?raw=true)
