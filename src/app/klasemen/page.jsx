@@ -1,7 +1,10 @@
 import query from "../../db/config";
+export const dynamic = "force-dynamic";
 
 export default async function Klasemen() {
   const klasemen = await query("SELECT * FROM klasemen ORDER BY point DESC");
+  const data = JSON.parse(JSON.stringify(klasemen || []));
+
   return (
     <div className="max-w-[1200px] mx-auto mt-10">
       <div className="font-semibold tracking-wide text-xl text-center mb-3">
@@ -40,11 +43,8 @@ export default async function Klasemen() {
           </tr>
         </thead>
         <tbody>
-          {klasemen.map((club, key) => (
-            <tr
-              className="bg-white border-b"
-              key={key}
-            >
+          {data?.map((club, key) => (
+            <tr className="bg-white border-b" key={key}>
               <td class="px-6 py-4 text-center">{key + 1}</td>
               <td class="px-6 py-4">{club.nama_club}</td>
               <td class="px-6 py-4 text-center">{club.main}</td>
