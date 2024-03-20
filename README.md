@@ -1,6 +1,6 @@
 
 ## Demo Links
-[Link Demo](hhttps://klasemen-coding-test.vercel.app/input-club)
+[Open Page](hhttps://klasemen-coding-test.vercel.app/input-club)
 
 ## Getting Started
 
