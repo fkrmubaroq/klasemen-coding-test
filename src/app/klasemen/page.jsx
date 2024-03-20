@@ -43,7 +43,7 @@ export default async function Klasemen() {
         </thead>
         <tbody>
           {data?.map((club, key) => (
-            <tr className="bg-white border-b" key={key}>
+            <tr className="bg-white border-b hover:bg-gray-100" key={key}>
               <td className="px-6 py-4 text-center">{key + 1}</td>
               <td className="px-6 py-4">{club.nama_club}</td>
               <td className="px-6 py-4 text-center">{club.main}</td>

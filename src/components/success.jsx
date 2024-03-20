@@ -1,8 +1,7 @@
 import cn from "classnames";
-import { useState } from "react";
-export default function Success({ children, className }) {
-  const [show, setShow] = useState(true);
+export default function Success({ children, className, onHide, show }) {
   if (!show) return <></>;
+
   return (
     <div
       className={cn(
@@ -12,7 +11,7 @@ export default function Success({ children, className }) {
     >
       <div
         className="absolute right-2 top-2 cursor-pointer"
-        onClick={() => setShow(false)}
+        onClick={() => onHide()}
       >
         x
       </div>

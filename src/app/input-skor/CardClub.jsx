@@ -82,8 +82,8 @@ export default function CardClub({ clubs }) {
 
   return (
     <>
-      {!!error && <Error>{error}</Error>}
-      {!!success && <Success>{success}</Success>}
+      {!!error && <Error show={!!error} onHide={() => setError("")}>{error}</Error>}
+      {!!success && <Success show={!!success} onHide={() => setError("")}>{success}</Success>}
 
       <Tabs menus={tabs} onClick={setActiveTab} activeTab={activeTab} />
 
