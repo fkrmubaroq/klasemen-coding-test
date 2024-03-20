@@ -1,3 +1,4 @@
+import ResponseError from "./errors";
 
 export function objectDataToQueryBind({
   data,
@@ -21,4 +22,16 @@ export function printString(str, count, separator = "?") {
     tmp += `${str} ${x === count ? '' : separator} `
   }
   return tmp;
+}
+
+export const validate = (schema, request) => {
+  const result = schema.validate(request, {
+    abortEarly: false,
+    allowUnknown: false
+  });
+  if (result.error) {
+    throw new ResponseError(400, result.error.message);
+  }
+
+  return result.value;
 }

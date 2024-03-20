@@ -1,5 +1,5 @@
 import cn from "classnames";
-export default function Input({ invalid, className, ...props }) {
+export default function Input({ value, invalid, className, ...props }) {
   return (
     <>
       <input
@@ -8,8 +8,11 @@ export default function Input({ invalid, className, ...props }) {
           "p-2.5 rounded-md border border-gray-300 form-input",
           className
         )}
+        value={value}
       />
-      {invalid && <span className="feedback-error text-red-700">{invalid}</span>}
+      {invalid && (
+        <span className="feedback-error text-red-700">{invalid}</span>
+      )}
     </>
   );
 }
