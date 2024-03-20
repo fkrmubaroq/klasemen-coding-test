@@ -1,12 +1,16 @@
 
 ## Demo Links
-[Link Demo ](https://nextjs.org/docs)
+[Link Demo ](hhttps://klasemen-coding-test.vercel.app/input-club)
 
 ## Getting Started
 
-First, run the development server:
+First, run app :
 
 ```bash
+# step 1
+npm install 
+
+# step 2
 npm run dev
 # or
 yarn dev
@@ -16,5 +20,15 @@ pnpm dev
 bun dev
 ```
 
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 NodeJS Version : V18.17.0
+
+## Screenshots
+
+![App Screenshot](https://klasemen-coding-test.vercel.app/screenshoots/home.png)
+
+![alt text](https://github.com/fkrmubaroq/klasemen-coding-test/blob/main/screenshoots/home.png?raw=true)
+![alt text](https://github.com/fkrmubaroq/klasemen-coding-test/blob/main/screenshoots/input-club.png?raw=true)
+![alt text](https://github.com/fkrmubaroq/klasemen-coding-test/blob/main/screenshoots/input-skor.png?raw=true)
+![alt text](https://github.com/fkrmubaroq/klasemen-coding-test/blob/main/screenshoots/klasemen.png?raw=true)
