@@ -2,8 +2,7 @@ import query from "../../db/config";
 export const dynamic = "force-dynamic";
 
 export default async function Klasemen() {
-  const klasemen = await query("SELECT * FROM klasemen ORDER BY point DESC");
-  const data = JSON.parse(JSON.stringify(klasemen || []));
+  const data = await query("SELECT * FROM klasemen ORDER BY point DESC");
 
   return (
     <div className="max-w-[1200px] mx-auto mt-10">

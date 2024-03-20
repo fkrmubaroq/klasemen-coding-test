@@ -43,7 +43,6 @@ export default function CardClub({ clubs }) {
     setIndexDoubleMatch(indexTemp.length ? indexTemp : []);
   }, [matchClubMultiple]);
 
-
   const onChangeSingle = (name, index, value) => {
     setMatchClubSingle((state) => ({
       ...state,
@@ -53,32 +52,42 @@ export default function CardClub({ clubs }) {
 
   const onChangeMultiple = (name, index, value) => {
     setMatchClubMultiple((prev) => {
-      return prev.map((match, i) => (i === index ? { ...match, [name]:value} : match));
+      return prev.map((match, i) =>
+        i === index ? { ...match, [name]: value } : match
+      );
     });
   };
 
   const onSave = async () => {
-    setIsLoading(true);
-    const insertData = await insertScore(activeTab === "Single" ? matchClubSingle : matchClubMultiple);
-    if (insertData.status !== STATUS_MESSAGE.Ok) {
-      setError(insertData.message);
-      return;
-    }
+    try {
+      setIsLoading(true);
+      const insertData = await insertScore(
+        activeTab === "Single" ? matchClubSingle : matchClubMultiple
+      );
 
-    activeTab === "Single" && setMatchClubSingle(initMatch[0]);
-    activeTab === "Multiple" && setMatchClubMultiple(initMatch);
-    setSuccess("Skor berhasil ditambahkan");
-    setIsLoading(false);
-  }
+      if (insertData.status !== STATUS_MESSAGE.Ok) {
+        setError(insertData.message);
+        return;
+      }
+
+      activeTab === "Single" && setMatchClubSingle(initMatch[0]);
+      activeTab === "Multiple" && setMatchClubMultiple(initMatch);
+      setSuccess("Skor berhasil ditambahkan");
+    } catch (e) {
+      setError(e.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <>
-      {!!error && !success && <Error>{Error}</Error>}
-      {!!success && !error && <Success>{success}</Success>}
+      {!!error && <Error>{error}</Error>}
+      {!!success && <Success>{success}</Success>}
 
       <Tabs menus={tabs} onClick={setActiveTab} activeTab={activeTab} />
 
-      <Card className="w-[500px]">
+      <Card className="min-[280px]:w-full sm:w-[600px]">
         <div className="w-full flex flex-col gap-y-3">
           {activeTab === "Single" && (
             <ClubVsClub

@@ -24,22 +24,26 @@ export default function FormInputClub() {
   const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = async () => {
-    setIsLoading(true);
-    const valid = formRef.current.checkValidity();
-    setValidated(true);
-    if (!valid) return;
+    try {
+      setIsLoading(true);
+      const valid = formRef.current.checkValidity();
+      setValidated(true);
+      if (!valid) return;
 
-    const insertData = await insertClub(form);
-    
-    if (insertData.status !== STATUS_MESSAGE.Ok) {
-      setError(insertData.message);
-      return;
+      const insertData = await insertClub(form);
+
+      if (insertData.status !== STATUS_MESSAGE.Ok) {
+        setError(insertData.message);
+        return;
+      }
+      setForm(initForm);
+      setSuccess("Data berhasil ditambahkan");
+      setValidated(false);
+    } catch (e) {
+      setError(e.message);
+    } finally { 
+      setIsLoading(false);
     }
-    setForm(initForm);
-    setError("");
-    setSuccess("Data berhasil ditambahkan");
-    setValidated(false);
-     setIsLoading(false);
   };
 
   const onChange = (e) =>
@@ -79,8 +83,13 @@ export default function FormInputClub() {
             />
           </div>
 
-          <Button type="submit" className="flex justify-center items-center" disabled={isLoading}>
-            {isLoading ? <Spinner /> : "Save"}</Button>
+          <Button
+            type="submit"
+            className="flex justify-center items-center"
+            disabled={isLoading}
+          >
+            {isLoading ? <Spinner /> : "Save"}
+          </Button>
         </Form>
       </Card>
     </div>

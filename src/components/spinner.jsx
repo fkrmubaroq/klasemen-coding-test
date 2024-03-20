@@ -2,7 +2,7 @@ export default function Spinner() {
   return (
     <div role="status">
       <svg
-        ariaHidden="true"
+        aria-hidden="true"
         className="w-8 h-8 text-gray-100 animate-spin  fill-blue-600"
         viewBox="0 0 100 101"
         fill="none"
