@@ -7,6 +7,7 @@ import Error from "../../components/error";
 import Form from "../../components/form";
 import Input from "../../components/input";
 import Label from "../../components/label";
+import Spinner from "../../components/spinner";
 import Success from "../../components/success";
 import { STATUS_MESSAGE } from "../../enum";
 
@@ -20,7 +21,10 @@ export default function FormInputClub() {
   const [form, setForm] = useState(initForm);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
   const onSubmit = async () => {
+    setIsLoading(true);
     const valid = formRef.current.checkValidity();
     setValidated(true);
     if (!valid) return;
@@ -35,6 +39,7 @@ export default function FormInputClub() {
     setError("");
     setSuccess("Data berhasil ditambahkan");
     setValidated(false);
+     setIsLoading(false);
   };
 
   const onChange = (e) =>
@@ -74,7 +79,8 @@ export default function FormInputClub() {
             />
           </div>
 
-          <Button type="submit">Save</Button>
+          <Button type="submit" className="flex justify-center items-center" disabled={isLoading}>
+            {isLoading ? <Spinner /> : "Save"}</Button>
         </Form>
       </Card>
     </div>

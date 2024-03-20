@@ -5,6 +5,7 @@ import { insertScore } from "../../action/input-score";
 import Button from "../../components/button";
 import Card from "../../components/card";
 import Error from "../../components/error";
+import Spinner from "../../components/spinner";
 import Success from "../../components/success";
 import { STATUS_MESSAGE } from "../../enum";
 import ClubVsClub from "./ClubVsClub";
@@ -24,7 +25,7 @@ export default function CardClub({ clubs }) {
   const [indexDoubleMatch, setIndexDoubleMatch] = useState([]);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (!matchClubMultiple.length) return;
@@ -57,6 +58,7 @@ export default function CardClub({ clubs }) {
   };
 
   const onSave = async () => {
+    setIsLoading(true);
     const insertData = await insertScore(activeTab === "Single" ? matchClubSingle : matchClubMultiple);
     if (insertData.status !== STATUS_MESSAGE.Ok) {
       setError(insertData.message);
@@ -66,11 +68,11 @@ export default function CardClub({ clubs }) {
     activeTab === "Single" && setMatchClubSingle(initMatch[0]);
     activeTab === "Multiple" && setMatchClubMultiple(initMatch);
     setSuccess("Skor berhasil ditambahkan");
+    setIsLoading(false);
   }
 
   return (
     <>
-      
       {!!error && !success && <Error>{Error}</Error>}
       {!!success && !error && <Success>{success}</Success>}
 
@@ -112,11 +114,11 @@ export default function CardClub({ clubs }) {
         )}
 
         <Button
-          disabled={!!indexDoubleMatch.length}
-          className="mt-4 w-full"
+          disabled={!!indexDoubleMatch.length || isLoading}
+          className="mt-4 w-full flex justify-center items-center"
           onClick={onSave}
         >
-          Save
+          {isLoading ? <Spinner /> : "Save"}
         </Button>
       </Card>
     </>
